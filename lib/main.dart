@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testapp1/screen/formscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:testapp1/screen/page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,19 +38,22 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         body: TabBarView(
-          children: [FormScreen(), Container()],
+          children: [FormScreen(), Container(), PageScreen()],
         ),
         backgroundColor: Colors.blue,
         bottomNavigationBar: TabBar(
           tabs: [
             Tab(
-              text: "บันทึกคะแนนสอบ ",
+              text: "บันทึกคะแนนสอบ x",
             ),
             Tab(
               text: "รายชื่อนักเรียน",
+            ),
+            Tab(
+              text: "Page",
             )
           ],
         ),

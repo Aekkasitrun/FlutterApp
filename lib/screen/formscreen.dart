@@ -45,11 +45,12 @@ class _FormScreenState extends State<FormScreen> {
                     style: TextStyle(fontSize: 20),
                   ),
                   TextFormField(
+                    validator: RequiredValidator(
+                        errorText: "กรุณาป้อนชื่อด้วยครับ ^^"),
                     onSaved: (String? fname) {
                       myStudent.fname = fname;
                     },
                   ),
-                  
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -60,11 +61,13 @@ class _FormScreenState extends State<FormScreen> {
                         onPressed: () async {
                           print(
                               "-----------------------------------------------------------------------");
+                          if (formKey.currentState!.validate()) {
+                            formKey.currentState?.save();
 
-                          formKey.currentState?.save();
+                            await addUser(myStudent);
 
-                          await addUser(myStudent);
-
+                            
+                          }
                           formKey.currentState?.reset();
                         }),
                   )

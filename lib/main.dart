@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         bottomNavigationBar: TabBar(
           tabs: [
             Tab(
-              text: "บันทึกคะแนนสอบ x",
+              text: "บันทึกคะแนนสอบ",
             ),
             Tab(
               text: "รายชื่อนักเรียน",

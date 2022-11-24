@@ -16,12 +16,11 @@ class _FormScreenState extends State<FormScreen> {
   CollectionReference _studentCollection =
       FirebaseFirestore.instance.collection("students");
 
-      
   Future<void> addUser(Student myStudent) {
     // Call the user's CollectionReference to add a new user
     return _studentCollection
         .add({
-         "fname": myStudent.fname,
+          "fname": myStudent.fname,
         })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
@@ -30,51 +29,48 @@ class _FormScreenState extends State<FormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-              appBar: AppBar(
-                title: Text("แบบฟอร์มบันทึกคะแนนสอบ cf"),
+      appBar: AppBar(
+        title: Text("แบบฟอร์มบันทึกคะแนนสอบ"),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "ชื่อ",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  TextFormField(
+                    onSaved: (String? fname) {
+                      myStudent.fname = fname;
+                    },
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        child: Text(
+                          "บันทึกข้อมูล",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        onPressed: () async {
+                          print(
+                              "-----------------------------------------------------------------------");
+
+                          formKey.currentState?.save();
+
+                          await addUser(myStudent);
+
+                          formKey.currentState?.reset();
+                        }),
+                  )
+                ],
               ),
-              body: Container(
-                padding: EdgeInsets.all(20),
-                child: Form(
-                    key: formKey,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "ชื่อ",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          TextFormField(
-                            onSaved: (String? fname) {
-                              myStudent.fname = fname;
-                            },
-                          ),
-                  
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                                child: Text(
-                                  "บันทึกข้อมูล",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                onPressed: () async {
-                                  print("-----------------------------------------------------------------------");
-                                 
-                                    formKey.currentState?.save();
-                                    
-                                    await addUser(myStudent);
-                              
-                                   
-                                    formKey.currentState?.reset();
-                                  
-                                }),
-                          )
-                        ],
-                      ),
-                    )),
-              ),
-            );
-          }
-  
+            )),
+      ),
+    );
+  }
 }

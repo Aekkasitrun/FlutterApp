@@ -49,6 +49,7 @@ class _FormScreenState extends State<FormScreen> {
                       myStudent.fname = fname;
                     },
                   ),
+                  
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(

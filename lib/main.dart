@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:testapp1/screen/formscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:testapp1/screen/page.dart';
-import 'package:testapp1/screen/userinformation.dart';
+import 'package:testapp1/screen/displayscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 3,
       child: Scaffold(
         body: TabBarView(
-          children: [FormScreen(), UserInformation(), PageScreen()],
+          children: [FormScreen(), DisplayScreen(), PageScreen()],
         ),
         backgroundColor: Colors.blue,
         bottomNavigationBar: TabBar(

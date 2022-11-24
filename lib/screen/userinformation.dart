@@ -27,9 +27,15 @@ class _UserInformationState extends State<UserInformation> {
 
         return ListView(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
-          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+          Map<String?, dynamic> data = document.data()! as Map<String?, dynamic>;
+          print(data);
             return ListTile(
-              title: Text("data['fname']"),
+              leading: CircleAvatar(
+                          radius: 30,
+                          child: FittedBox(child: Text(data['fname']),
+                          ),
+                        ),
+              //title: Text(data['fname']),
               //subtitle: Text(data['company']),
             );
           }).toList(),
